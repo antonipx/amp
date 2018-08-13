@@ -8,7 +8,7 @@ tests = [ "0", "256", "128", "64", "32", "16", "8", "4", "2", "1" ]  # fsync=...
 bs = "64k"
 filename = "/mnt/test.1"
 size="10G"
-fio="fio --blocksize=" + bs + " --filename=" + filename + " --ioengine=libaio --readwrite=write --size=" + size + " --name=test --direct=1 --iodepth=128 --end_fsync=1 --fsync="
+fio="fio --blocksize=" + bs + " --filename=" + filename + " --gtod_reduce=1 --ioengine=libaio --readwrite=write --size=" + size + " --name=test --direct=1 --iodepth=128 --end_fsync=1 --fsync="
 
 one = {}
 two = {}
