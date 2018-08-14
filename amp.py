@@ -49,15 +49,16 @@ for fs in fsync:
     print fio + fs
 
     for key, val in two.items():
-        print("%25s = %7d MB" % (key, (val-one[key])*512/1024/1024 ) )
-
-    sys.stdout.flush()
+        print("%30s = %7d MB" % (key, (val-one[key])*512/1024/1024 ) )
 
     dsksum=0
     for key in dsk:
         dsksum=dsksum+(two[key]-one[key])
 
     pxdiff=two[pxd]-one[pxd]
+
+    print("Fsync %s Write Amplification = %.2f%%" % (fs, 100 * float(dsksum-pxdiff)/float(pxdiff)) )
+    sys.stdout.flush()
 
     log.write("Fsync=" + fs )
     log.write(" DskNo=" + str(len(dsk)))
